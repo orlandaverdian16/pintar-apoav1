@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PINTAR - APOA | Kantor Imigrasi Kelas I TPI Tanjungpinang</title>
+    <meta name="description" content="PINTAR-APOA: Pusat Informasi dan Tutorial Aplikasi Pelaporan Orang Asing. Inovasi digital Kantor Imigrasi Kelas I TPI Tanjungpinang untuk kemudahan pelaporan orang asing.">
+    
+    <!-- Favicon (Fallback to logo) -->
+    <link rel="icon" type="image/png" href="https://drive.google.com/thumbnail?id=1z7Ve_YaOqyZP6qegxmRcOYy266fyrd2m&sz=w200">
+
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Tailwind CSS (CDN for Development) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        poppins: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        navy: {
+                            800: '#1e3a8a', // Dark Navy
+                            900: '#172554', // Very Dark Navy (Primary)
+                        },
+                        gold: {
+                            400: '#fbbf24',
+                            500: '#f59e0b', // Gold (Accent)
+                            600: '#d97706',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS (Dapat dipindahkan ke css/style.css) -->
+    <style>
+        /* Base Styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8fafc; /* Light Gray / Slate 50 */
+        }
+
+        /* Glassmorphism utility */
+        .glass {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .glass-dark {
+            background: rgba(23, 37, 84, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        /* Hover Effect Utilities */
+        .hover-lift {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        /* Timeline Custom Styles */
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 24px;
+            width: 2px;
+            background-color: #e2e8f0;
+        }
+
+        @media (min-width: 768px) {
+            .timeline-line::before {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+
+        /* Accordion transition */
+        .accordion-content {
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+            max-height: 0;
+            overflow: hidden;
+        }
+        
+        /* Gradient Text */
+        .text-gradient {
+            background: linear-gradient(to right, #f59e0b, #fbbf24);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased overflow-x-hidden">
+
+    <!-- HEADER & NAVBAR -->
+    <header class="fixed w-full top-0 z-50 glass transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo & Title -->
+                <div class="flex items-center gap-3">
+                    <img src="https://drive.google.com/thumbnail?id=1z7Ve_YaOqyZP6qegxmRcOYy266fyrd2m&sz=w200" alt="Logo Imigrasi" class="h-10 w-10 md:h-12 md:w-12 object-contain" onerror="this.src='https://placehold.co/100x100/172554/fbbf24?text=Logo'">
+                    <div class="flex flex-col">
+                        <span class="font-bold text-navy-900 leading-tight text-sm md:text-base">KANTOR IMIGRASI KELAS I</span>
+                        <span class="font-semibold text-gold-600 leading-tight text-xs md:text-sm">TPI TANJUNGPINANG</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <nav class="hidden lg:flex space-x-6 lg:space-x-8">
+                    <a href="#beranda" class="text-sm font-medium text-slate-700 hover:text-gold-500 transition-colors">Beranda</a>
+                    <a href="#tentang" class="text-sm font-medium text-slate-700 hover:text-gold-500 transition-colors">Tentang APOA</a>
+                    <a href="#dasar-hukum" class="text-sm font-medium text-slate-700 hover:text-gold-500 transition-colors">Dasar Hukum</a>
+                    <a href="#tutorial" class="text-sm font-medium text-slate-700 hover:text-gold-500 transition-colors">Tutorial</a>
+                    <a href="#video" class="text-sm font-medium text-slate-700 hover:text-gold-500 transition-colors">Video</a>
+                    <a href="#faq" class="text-sm font-medium text-slate-700 hover:text-gold-500 transition-colors">FAQ</a>
+                    <a href="#kontak" class="text-sm font-medium text-slate-700 hover:text-gold-500 transition-colors">Kontak</a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <div class="lg:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-slate-700 hover:text-gold-500 focus:outline-none">
+                        <i data-lucide="menu" class="h-6 w-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-gray-100 shadow-lg absolute w-full">
+            <div class="px-4 pt-2 pb-4 space-y-1">
+                <a href="#beranda" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-gray-50 hover:text-gold-500">Beranda</a>
+                <a href="#tentang" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-gray-50 hover:text-gold-500">Tentang APOA</a>
+                <a href="#dasar-hukum" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-gray-50 hover:text-gold-500">Dasar Hukum</a>
+                <a href="#tutorial" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-gray-50 hover:text-gold-500">Tutorial</a>
+                <a href="#video" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-gray-50 hover:text-gold-500">Video</a>
+                <a href="#faq" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-gray-50 hover:text-gold-500">FAQ</a>
+                <a href="#kontak" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-gray-50 hover:text-gold-500">Kontak</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="beranda" class="relative min-h-screen flex items-center justify-center pt-20">
+        <!-- Background Image -->
+        <div class="absolute inset-0 z-0">
+            <!-- Ganti src di bawah ini jika ingin fallback placeholder di preview, tapi struktur aslinya mengarah ke assets/ -->
+            <img src="https://drive.google.com/thumbnail?id=1T5ti99GxyRcMYSoTsybcsIKmXx5baMbB&sz=w2000" alt="Kantor Imigrasi Tanjungpinang" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/1920x1080/1e293b/0f172a?text=Background+Gedung+Kantor'">
+            <!-- Overlay Biru Transparan -->
+            <div class="absolute inset-0 bg-navy-900/80 mix-blend-multiply"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-navy-900/90 to-transparent"></div>
+        </div>
+
+        <div class="relative z-10 text-center px-4 max-w-5xl mx-auto" data-aos="zoom-in" data-aos-duration="1000">
+            <div class="inline-block mb-4 px-4 py-1.5 rounded-full glass-dark border border-white/20 text-white/90 text-sm font-medium tracking-wide shadow-lg">
+                <i data-lucide="info" class="inline w-4 h-4 mr-1 mb-0.5"></i> Inovasi Digital Pelayanan
+            </div>
+            
+            <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white mb-6 tracking-tight drop-shadow-lg">
+                PINTAR - <span class="text-gradient">APOA</span>
+            </h1>
+            
+            <h2 class="text-xl md:text-2xl lg:text-3xl font-medium text-gray-200 mb-8 max-w-3xl mx-auto drop-shadow-md">
+                Pusat Informasi dan Tutorial <br class="hidden md:block">
+                Aplikasi Pelaporan Orang Asing
+            </h2>
+            
+            <p class="text-lg md:text-xl text-gold-400 font-semibold italic mb-10 tracking-wide drop-shadow">
+                "Mudah Dipahami, Mudah Digunakan, Mudah Melapor"
+            </p>
+
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <a href="#tentang" class="w-full sm:w-auto px-8 py-3.5 rounded-lg bg-gold-500 hover:bg-gold-400 text-navy-900 font-bold text-lg transition-all shadow-[0_0_20px_rgba(245,158,11,0.4)] hover:shadow-[0_0_25px_rgba(245,158,11,0.6)] transform hover:-translate-y-1 flex items-center justify-center gap-2">
+                    Pelajari APOA <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                </a>
+                <a href="#tutorial" class="w-full sm:w-auto px-8 py-3.5 rounded-lg bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/30 text-white font-bold text-lg transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2">
+                    Tutorial Pengisian <i data-lucide="play-circle" class="w-5 h-5"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION TENTANG APOA -->
+    <section id="tentang" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h3 class="text-gold-500 font-semibold tracking-wider uppercase text-sm mb-2">Informasi Umum</h3>
+                <h2 class="text-3xl md:text-4xl font-bold text-navy-900">Mengenal APOA</h2>
+                <div class="w-24 h-1 bg-gold-500 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-gray-50 rounded-2xl p-8 shadow-lg hover-lift border border-gray-100 relative overflow-hidden group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-navy-900/5 rounded-bl-full -z-10 group-hover:bg-gold-500/10 transition-colors"></div>
+                    <div class="w-14 h-14 bg-navy-900 rounded-xl flex items-center justify-center text-white mb-6 shadow-md">
+                        <i data-lucide="monitor-smartphone" class="w-7 h-7"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-navy-900 mb-3">Apa itu APOA?</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Aplikasi Pelaporan Orang Asing (APOA) adalah platform digital resmi dari Direktorat Jenderal Imigrasi untuk mendata keberadaan dan pergerakan Orang Asing di wilayah Indonesia.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-gray-50 rounded-2xl p-8 shadow-lg hover-lift border border-gray-100 relative overflow-hidden group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-navy-900/5 rounded-bl-full -z-10 group-hover:bg-gold-500/10 transition-colors"></div>
+                    <div class="w-14 h-14 bg-navy-900 rounded-xl flex items-center justify-center text-white mb-6 shadow-md">
+                        <i data-lucide="target" class="w-7 h-7"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-navy-900 mb-3">Tujuan APOA</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Memastikan keamanan nasional dan ketertiban umum dengan mendata secara akurat dan real-time keberadaan Warga Negara Asing yang menginap di fasilitas akomodasi.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-gray-50 rounded-2xl p-8 shadow-lg hover-lift border border-gray-100 relative overflow-hidden group" data-aos="fade-up" data-aos-delay="300">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-navy-900/5 rounded-bl-full -z-10 group-hover:bg-gold-500/10 transition-colors"></div>
+                    <div class="w-14 h-14 bg-navy-900 rounded-xl flex items-center justify-center text-white mb-6 shadow-md">
+                        <i data-lucide="check-circle-2" class="w-7 h-7"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-navy-900 mb-3">Manfaat APOA</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Proses pelaporan menjadi lebih cepat, terintegrasi, paperless, dan menghindarkan pemilik penginapan dari sanksi hukum akibat kelalaian pelaporan.
+                    </p>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="bg-gray-50 rounded-2xl p-8 shadow-lg hover-lift border border-gray-100 relative overflow-hidden group" data-aos="fade-up" data-aos-delay="400">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-navy-900/5 rounded-bl-full -z-10 group-hover:bg-gold-500/10 transition-colors"></div>
+                    <div class="w-14 h-14 bg-navy-900 rounded-xl flex items-center justify-center text-white mb-6 shadow-md">
+                        <i data-lucide="users-2" class="w-7 h-7"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-navy-900 mb-3">Siapa Wajib Lapor?</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Setiap pemilik atau pengelola Hotel, Resort, Villa, Guest House, Homestay, Mess perusahaan, maupun tempat penginapan lainnya yang menampung Orang Asing.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION DASAR HUKUM -->
+    <section id="dasar-hukum" class="py-24 bg-slate-50 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h3 class="text-gold-500 font-semibold tracking-wider uppercase text-sm mb-2">Regulasi & Aturan</h3>
+                <h2 class="text-3xl md:text-4xl font-bold text-navy-900">Dasar Hukum Pelaporan</h2>
+                <div class="w-24 h-1 bg-gold-500 mx-auto mt-4 rounded-full"></div>
+                <p class="mt-6 text-slate-600 max-w-2xl mx-auto">
+                    Pelaporan keberadaan Orang Asing melalui APOA adalah bentuk kepatuhan terhadap peraturan perundang-undangan guna mendukung pengawasan keimigrasian di Indonesia.
+                </p>
+            </div>
+
+            <!-- Cards Dasar Hukum -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Card 1 -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover-lift border-t-4 border-t-gold-500 relative overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center text-navy-900 mb-5">
+                        <i data-lucide="book-open" class="w-6 h-6"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-navy-900 mb-2">Kewajiban Pelaporan</h4>
+                    <span class="inline-block px-3 py-1 bg-gray-100 text-xs font-semibold text-gray-600 rounded-full mb-4">Pasal 72 Ayat (2)</span>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Pemilik atau pengelola tempat penginapan wajib memberikan data Orang Asing yang menginap kepada Pejabat Imigrasi melalui Aplikasi Pelaporan Orang Asing (APOA).
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover-lift border-t-4 border-t-navy-900 relative overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center text-navy-900 mb-5">
+                        <i data-lucide="scale" class="w-6 h-6"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-navy-900 mb-2">Landasan Hukum</h4>
+                    <span class="inline-block px-3 py-1 bg-gray-100 text-xs font-semibold text-gray-600 rounded-full mb-4">UU No 6 Tahun 2011</span>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Undang-Undang Keimigrasian (diubah terakhir dengan UU No 63 Tahun 2024) menjadi landasan hukum pelaksanaan pengawasan dan pelaporan keberadaan Orang Asing.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover-lift border-t-4 border-t-red-500 relative overflow-hidden" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-12 h-12 bg-red-50 rounded-full flex items-center justify-center text-red-600 mb-5">
+                        <i data-lucide="alert-triangle" class="w-6 h-6"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-navy-900 mb-2">Sanksi Pelanggaran</h4>
+                    <span class="inline-block px-3 py-1 bg-gray-100 text-xs font-semibold text-gray-600 rounded-full mb-4">Pasal 117</span>
+                    <ul class="text-slate-600 text-sm leading-relaxed space-y-2">
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="x-circle" class="w-4 h-4 text-red-500 mt-0.5 flex-shrink-0"></i>
+                            Kurungan paling lama 3 (tiga) bulan; atau
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="x-circle" class="w-4 h-4 text-red-500 mt-0.5 flex-shrink-0"></i>
+                            Denda paling banyak Rp25.000.000,00.
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="bg-navy-900 rounded-2xl p-8 shadow-lg hover-lift relative overflow-hidden" data-aos="fade-up" data-aos-delay="400">
+                    <div class="absolute -right-4 -bottom-4 opacity-10">
+                        <i data-lucide="smartphone" class="w-32 h-32 text-white"></i>
+                    </div>
+                    <div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center text-gold-400 mb-5">
+                        <i data-lucide="smartphone-nfc" class="w-6 h-6"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-3">Pelaporan Digital</h4>
+                    <p class="text-gray-300 text-sm leading-relaxed relative z-10">
+                        Gunakan APOA untuk melaporkan tamu Warga Negara Asing secara mudah, cepat, aman, dan sesuai dengan ketentuan peraturan perundang-undangan.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Disclaimer -->
+            <div class="mt-12 bg-blue-50 border border-blue-100 rounded-xl p-5 flex gap-4 items-start max-w-4xl mx-auto" data-aos="zoom-in">
+                <i data-lucide="info" class="text-navy-800 w-6 h-6 flex-shrink-0 mt-0.5"></i>
+                <p class="text-sm text-navy-800">
+                    <strong>Catatan Penting:</strong> Setiap tamu WNA yang menginap di hotel, resort, villa, homestay, apartemen, maupun bentuk penginapan lainnya wajib dilaporkan. Silakan sesuaikan dengan regulasi terbaru apabila terdapat perubahan kebijakan dari Direktorat Jenderal Imigrasi.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION TUTORIAL -->
+    <section id="tutorial" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h3 class="text-gold-500 font-semibold tracking-wider uppercase text-sm mb-2">Panduan Penggunaan</h3>
+                <h2 class="text-3xl md:text-4xl font-bold text-navy-900">Tutorial APOA</h2>
+                <div class="w-24 h-1 bg-gold-500 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <!-- Step Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+                <!-- Step 1 -->
+                <div class="relative bg-navy-900 rounded-2xl p-6 text-center hover-lift group" data-aos="fade-right" data-aos-delay="0">
+                    <div class="absolute -top-4 -left-4 w-10 h-10 bg-gold-500 rounded-full flex items-center justify-center text-navy-900 font-bold text-lg border-4 border-white shadow-sm z-10">1</div>
+                    <div class="w-16 h-16 mx-auto bg-white/10 rounded-full flex items-center justify-center text-gold-400 mb-4 group-hover:scale-110 transition-transform">
+                        <i data-lucide="log-in" class="w-8 h-8"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-white mb-2">Login APOA</h4>
+                    <p class="text-gray-300 text-sm">Buka aplikasi/web APOA dan masuk menggunakan akun yang telah didaftarkan dan diverifikasi.</p>
+                </div>
+                <!-- Step 2 -->
+                <div class="relative bg-navy-900 rounded-2xl p-6 text-center hover-lift group" data-aos="fade-right" data-aos-delay="100">
+                    <div class="absolute -top-4 -left-4 w-10 h-10 bg-gold-500 rounded-full flex items-center justify-center text-navy-900 font-bold text-lg border-4 border-white shadow-sm z-10">2</div>
+                    <div class="w-16 h-16 mx-auto bg-white/10 rounded-full flex items-center justify-center text-gold-400 mb-4 group-hover:scale-110 transition-transform">
+                        <i data-lucide="file-input" class="w-8 h-8"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-white mb-2">Input Data</h4>
+                    <p class="text-gray-300 text-sm">Pilih menu pelaporan, isi identitas WNA, nomor paspor, visa, dan detail waktu menginap.</p>
+                </div>
+                <!-- Step 3 -->
+                <div class="relative bg-navy-900 rounded-2xl p-6 text-center hover-lift group" data-aos="fade-right" data-aos-delay="200">
+                    <div class="absolute -top-4 -left-4 w-10 h-10 bg-gold-500 rounded-full flex items-center justify-center text-navy-900 font-bold text-lg border-4 border-white shadow-sm z-10">3</div>
+                    <div class="w-16 h-16 mx-auto bg-white/10 rounded-full flex items-center justify-center text-gold-400 mb-4 group-hover:scale-110 transition-transform">
+                        <i data-lucide="send-to-back" class="w-8 h-8"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-white mb-2">Submit Laporan</h4>
+                    <p class="text-gray-300 text-sm">Periksa kembali kebenaran data yang diinput, lalu klik tombol simpan atau submit.</p>
+                </div>
+                <!-- Step 4 -->
+                <div class="relative bg-navy-900 rounded-2xl p-6 text-center hover-lift group" data-aos="fade-right" data-aos-delay="300">
+                    <div class="absolute -top-4 -left-4 w-10 h-10 bg-gold-500 rounded-full flex items-center justify-center text-navy-900 font-bold text-lg border-4 border-white shadow-sm z-10">4</div>
+                    <div class="w-16 h-16 mx-auto bg-white/10 rounded-full flex items-center justify-center text-gold-400 mb-4 group-hover:scale-110 transition-transform">
+                        <i data-lucide="badge-check" class="w-8 h-8"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-white mb-2">Selesai</h4>
+                    <p class="text-gray-300 text-sm">Data otomatis masuk ke database Imigrasi. Anda telah menunaikan kewajiban lapor.</p>
+                </div>
+            </div>
+
+            <!-- QR Code Area -->
+            <div class="bg-slate-50 rounded-3xl p-8 md:p-12 shadow-inner text-center border border-gray-100 max-w-4xl mx-auto" data-aos="zoom-in">
+                <h4 class="text-2xl font-bold text-navy-900 mb-4">Akses Cepat APOA</h4>
+                <p class="text-slate-600 mb-8 max-w-lg mx-auto">Scan QR Code di bawah ini melalui smartphone Anda untuk langsung mengakses sistem web Aplikasi Pelaporan Orang Asing.</p>
+                
+                <div class="inline-block p-4 bg-white rounded-2xl shadow-lg border border-gray-100 mb-8 hover-lift">
+                    <img src="https://drive.google.com/thumbnail?id=1RAbC_6BO-b9ZW7_2x4KpkHJblF_BjHy7&sz=w600" alt="QR Code APOA" class="mx-auto h-56 w-56 md:h-64 md:w-64 object-contain rounded-lg" onerror="this.src='https://placehold.co/300x300/ffffff/172554?text=QR+Code+APOA'">
+                </div>
+
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <a href="assets/tutorial.pdf" target="_blank" class="w-full sm:w-auto px-6 py-3 rounded-lg bg-navy-900 hover:bg-navy-800 text-white font-semibold transition-colors flex items-center justify-center gap-2 shadow-md">
+                        <i data-lucide="eye" class="w-5 h-5"></i> Lihat Tutorial PDF
+                    </a>
+                    <a href="assets/brosur.pdf" download class="w-full sm:w-auto px-6 py-3 rounded-lg border-2 border-navy-900 text-navy-900 hover:bg-navy-50 font-semibold transition-colors flex items-center justify-center gap-2">
+                        <i data-lucide="download" class="w-5 h-5"></i> Download PDF
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION VIDEO -->
+    <section id="video" class="py-24 bg-navy-900 relative">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(#fbbf24 1px, transparent 1px); background-size: 20px 20px;"></div>
+        
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h3 class="text-gold-400 font-semibold tracking-wider uppercase text-sm mb-2">Visualisasi</h3>
+                <h2 class="text-3xl md:text-4xl font-bold text-white">Video Panduan APOA</h2>
+                <div class="w-24 h-1 bg-gold-500 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <!-- YouTube Video Wrapper -->
+            <div class="bg-white/5 p-2 rounded-2xl backdrop-blur-sm border border-white/10 shadow-2xl" data-aos="zoom-in" data-aos-delay="100">
+                <div class="relative w-full overflow-hidden rounded-xl" style="padding-top: 56.25%;">
+                    <!-- Link disesuaikan dengan Google Drive Preview -->
+                    <iframe 
+                        class="absolute top-0 left-0 w-full h-full"
+                        src="https://drive.google.com/file/d/1BqZ23gv_KhOByZofFhMU388p21i5e3OU/preview" 
+                        title="Video Tutorial APOA" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION FAQ -->
+    <section id="faq" class="py-24 bg-slate-50">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h3 class="text-gold-500 font-semibold tracking-wider uppercase text-sm mb-2">Bantuan</h3>
+                <h2 class="text-3xl md:text-4xl font-bold text-navy-900">Pertanyaan Umum (FAQ)</h2>
+                <div class="w-24 h-1 bg-gold-500 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="space-y-4" data-aos="fade-up" data-aos-delay="100">
+                <!-- FAQ Item 1 -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                    <button class="faq-btn w-full px-6 py-5 flex justify-between items-center text-left focus:outline-none hover:bg-gray-50 transition-colors">
+                        <span class="font-semibold text-navy-900 text-lg">Apa itu APOA?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-gray-500 transform transition-transform duration-300"></i>
+                    </button>
+                    <div class="accordion-content bg-white px-6">
+                        <p class="text-slate-600 pb-5 text-sm leading-relaxed">
+                            Aplikasi Pelaporan Orang Asing (APOA) adalah platform elektronik resmi dari Direktorat Jenderal Imigrasi bagi pemilik atau pengelola tempat penginapan untuk melaporkan keberadaan Warga Negara Asing yang menginap di tempatnya secara cepat, aman, dan terintegrasi dengan data keimigrasian.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                    <button class="faq-btn w-full px-6 py-5 flex justify-between items-center text-left focus:outline-none hover:bg-gray-50 transition-colors">
+                        <span class="font-semibold text-navy-900 text-lg">Siapa yang wajib melapor?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-gray-500 transform transition-transform duration-300"></i>
+                    </button>
+                    <div class="accordion-content bg-white px-6">
+                        <p class="text-slate-600 pb-5 text-sm leading-relaxed">
+                            Setiap pemilik atau pengelola penginapan seperti hotel, resort, villa, guest house, homestay, apartemen, rumah sewa, maupun bentuk penginapan lainnya yang menerima tamu Warga Negara Asing (WNA) berkewajiban untuk melaporkan tamunya melalui APOA.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                    <button class="faq-btn w-full px-6 py-5 flex justify-between items-center text-left focus:outline-none hover:bg-gray-50 transition-colors">
+                        <span class="font-semibold text-navy-900 text-lg">Apakah ada sanksi apabila tidak melapor?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-gray-500 transform transition-transform duration-300"></i>
+                    </button>
+                    <div class="accordion-content bg-white px-6">
+                        <p class="text-slate-600 pb-5 text-sm leading-relaxed">
+                            Ya. Sesuai Pasal 117 Undang-Undang Keimigrasian, pemilik atau pengurus tempat penginapan yang tidak memberikan data Orang Asing yang menginap di tempatnya dapat dipidana dengan pidana kurungan paling lama 3 (tiga) bulan atau pidana denda paling banyak Rp25.000.000,00 (dua puluh lima juta rupiah).
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                    <button class="faq-btn w-full px-6 py-5 flex justify-between items-center text-left focus:outline-none hover:bg-gray-50 transition-colors">
+                        <span class="font-semibold text-navy-900 text-lg">Bagaimana jika lupa password?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-gray-500 transform transition-transform duration-300"></i>
+                    </button>
+                    <div class="accordion-content bg-white px-6">
+                        <p class="text-slate-600 pb-5 text-sm leading-relaxed">
+                            Anda dapat menggunakan fitur "Lupa Kata Sandi" pada halaman utama login APOA. Masukkan alamat email yang terdaftar, dan sistem akan mengirimkan tautan (link) untuk mengatur ulang password Anda. Jika mengalami kendala lebih lanjut, silakan hubungi layanan informasi Kantor Imigrasi Kelas I TPI Tanjungpinang.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION KONTAK -->
+    <section id="kontak" class="py-24 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-navy-900 rounded-3xl overflow-hidden shadow-2xl flex flex-col lg:flex-row" data-aos="fade-up">
+                <!-- Info Kontak -->
+                <div class="w-full lg:w-5/12 p-10 md:p-14 text-white">
+                    <h3 class="text-gold-400 font-semibold tracking-wider uppercase text-sm mb-2">Pusat Bantuan</h3>
+                    <h2 class="text-3xl font-bold mb-8">Hubungi Kami</h2>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="map-pin" class="text-gold-400 w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-lg mb-1">Alamat Kantor</h4>
+                                <p class="text-gray-300 text-sm leading-relaxed">
+                                    Kantor Imigrasi Kelas I TPI Tanjungpinang<br>
+                                    Jl. Ahmad Yani No.31, Sei Jang,<br>
+                                    Kec. Tanjungpinang Kota, Kota Tanjung Pinang,<br>
+                                    Kepulauan Riau
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="phone" class="text-gold-400 w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-lg mb-1">Telepon & WhatsApp</h4>
+                                <p class="text-gray-300 text-sm">(0778) 1234567<br>+62 812-3456-7890 (Layanan Informasi)</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="mail" class="text-gold-400 w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-lg mb-1">Email</h4>
+                                <p class="text-gray-300 text-sm">kanim.tanjungpinang@imigrasi.go.id</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="https://maps.app.goo.gl/ssuSdm5otZGrEKMK8?g_st=ic" target="_blank" class="mt-10 inline-flex items-center gap-2 bg-gold-500 hover:bg-gold-400 text-navy-900 font-bold py-3 px-6 rounded-lg transition-colors shadow-lg hover-lift">
+                        <i data-lucide="navigation" class="w-5 h-5"></i> Buka di Aplikasi Google Maps
+                    </a>
+                </div>
+
+                <!-- Maps / Image Visual -->
+                <div class="w-full lg:w-7/12 min-h-[350px] lg:min-h-full relative bg-slate-200">
+                    <iframe 
+                        class="absolute inset-0 w-full h-full border-0" 
+                        src="https://maps.google.com/maps?q=Kantor%20Imigrasi%20Kelas%20I%20TPI%20Tanjungpinang,%20Jl.%20Ahmad%20Yani%20No.31,%20Tanjungpinang&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-navy-900 pt-16 pb-8 border-t border-white/10 relative overflow-hidden">
+        <div class="absolute -top-32 -right-24 w-80 h-80 rounded-full bg-gold-500/10 blur-3xl"></div>
+        <div class="absolute -bottom-32 -left-24 w-80 h-80 rounded-full bg-blue-500/10 blur-3xl"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12">
+                <!-- Brand & Logo -->
+                <div class="lg:col-span-5">
+                    <div class="flex items-center gap-4">
+                    <img src="https://drive.google.com/thumbnail?id=1z7Ve_YaOqyZP6qegxmRcOYy266fyrd2m&sz=w200" alt="Logo Imigrasi" class="h-14 w-14 p-1.5 rounded-xl bg-white/10 border border-white/10 object-contain" onerror="this.src='https://placehold.co/100x100/ffffff/172554?text=Logo'">
+                    <div>
+                        <h4 class="text-xl font-bold text-white tracking-wide">PINTAR - APOA</h4>
+                        <p class="text-gray-400 text-sm mt-1">Kantor Imigrasi Kelas I TPI Tanjungpinang</p>
+                    </div>
+                    </div>
+                    <p class="max-w-md mt-6 text-sm leading-relaxed text-slate-300">Pusat informasi dan panduan digital untuk memudahkan pelaporan keberadaan Orang Asing melalui APOA.</p>
+                    <a href="#tutorial" class="inline-flex items-center gap-2 mt-6 text-sm font-semibold text-gold-400 hover:text-gold-300 transition-colors">
+                        Panduan Pelaporan <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="lg:col-span-3">
+                    <h4 class="text-white font-semibold">Navigasi Cepat</h4>
+                    <div class="w-10 h-0.5 bg-gold-500 mt-3 mb-5 rounded-full"></div>
+                    <nav class="grid grid-cols-2 gap-x-4 gap-y-3 text-sm">
+                        <a href="#tentang" class="text-slate-300 hover:text-gold-400 transition-colors">Tentang APOA</a>
+                        <a href="#tutorial" class="text-slate-300 hover:text-gold-400 transition-colors">Tutorial</a>
+                        <a href="#dasar-hukum" class="text-slate-300 hover:text-gold-400 transition-colors">Dasar Hukum</a>
+                        <a href="#faq" class="text-slate-300 hover:text-gold-400 transition-colors">FAQ</a>
+                        <a href="#video" class="text-slate-300 hover:text-gold-400 transition-colors">Video Panduan</a>
+                        <a href="#kontak" class="text-slate-300 hover:text-gold-400 transition-colors">Kontak</a>
+                    </nav>
+                </div>
+
+                <!-- Social Media -->
+                <div class="lg:col-span-4">
+                    <h4 class="text-white font-semibold">Media Sosial Kami</h4>
+                    <div class="w-10 h-0.5 bg-gold-500 mt-3 mb-5 rounded-full"></div>
+                    <div class="grid gap-3">
+                        <!-- Instagram -->
+                        <a href="https://www.instagram.com/imigrasi.tanjungpinang/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/10 text-slate-200 hover:bg-white/10 hover:border-gold-500/60 transition-all group">
+                            <span class="w-9 h-9 rounded-lg bg-gradient-to-br from-fuchsia-500 via-rose-500 to-amber-400 flex items-center justify-center text-white shadow-sm">
+                                <svg viewBox="0 0 24 24" aria-hidden="true" class="w-5 h-5 fill-current"><path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9a5.5 5.5 0 0 1-5.5 5.5h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4h-9Zm9.75 1.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"/></svg>
+                            </span>
+                            <span class="text-sm font-medium flex-1">Instagram <span class="block text-xs text-slate-400 mt-0.5">@imigrasi.tanjungpinang</span></span>
+                            <i data-lucide="arrow-up-right" class="w-4 h-4 text-slate-500 group-hover:text-gold-400"></i>
+                        </a>
+                        
+                        <!-- TikTok -->
+                        <a href="https://www.tiktok.com/@imigrasi.tanjungpinang" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/10 text-slate-200 hover:bg-white/10 hover:border-gold-500/60 transition-all group">
+                            <span class="w-9 h-9 rounded-lg bg-slate-950 flex items-center justify-center text-white border border-white/10 shadow-sm">
+                                <svg viewBox="0 0 24 24" aria-hidden="true" class="w-5 h-5 fill-current"><path d="M16.7 5.3c.6 1.1 1.6 2 2.8 2.5v3.1a8 8 0 0 1-2.8-.8v5.6a5.8 5.8 0 1 1-5-5.7v3.1a2.8 2.8 0 1 0 2 2.6V2.5h3c0 1 .3 1.9 1 2.8Z"/></svg>
+                            </span>
+                            <span class="text-sm font-medium flex-1">TikTok <span class="block text-xs text-slate-400 mt-0.5">@imigrasi.tanjungpinang</span></span>
+                            <i data-lucide="arrow-up-right" class="w-4 h-4 text-slate-500 group-hover:text-gold-400"></i>
+                        </a>
+
+                        <!-- Facebook -->
+                        <a href="https://www.facebook.com/search/top?q=Kantor%20Imigrasi%20Kelas%20I%20TPI%20Tanjungpinang" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/10 text-slate-200 hover:bg-white/10 hover:border-gold-500/60 transition-all group">
+                            <span class="w-9 h-9 rounded-lg bg-[#1877F2] flex items-end justify-center text-white overflow-hidden shadow-sm">
+                                <svg viewBox="0 0 24 24" aria-hidden="true" class="w-7 h-7 fill-current translate-y-1"><path d="M13.7 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.6 1.7-1.6H17V3.8c-.3 0-1.4-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2H7.5v3h2.8v8h3.4Z"/></svg>
+                            </span>
+                            <span class="text-sm font-medium flex-1">Facebook <span class="block text-xs text-slate-400 mt-0.5">Kantor Imigrasi Tanjungpinang</span></span>
+                            <i data-lucide="arrow-up-right" class="w-4 h-4 text-slate-500 group-hover:text-gold-400"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative mt-14 pt-7 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+                <p class="text-slate-400 text-sm">&copy; 2026 PINTAR - APOA. Kantor Imigrasi Kelas I TPI Tanjungpinang.</p>
+                <a href="#beranda" class="inline-flex items-center gap-2 text-sm font-medium text-slate-300 hover:text-gold-400 transition-colors">Kembali ke atas <i data-lucide="arrow-up" class="w-4 h-4"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts (Dapat dipindahkan ke js/script.js) -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // 1. Initialize Lucide Icons
+            lucide.createIcons();
+
+            // 2. Initialize AOS Animation
+            AOS.init({
+                once: true,
+                offset: 50,
+                duration: 800,
+                easing: 'ease-out-cubic',
+            });
+
+            // 3. Navbar Scroll Effect (Glassmorphism adjustments)
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 20) {
+                    navbar.classList.add('shadow-md');
+                } else {
+                    navbar.classList.remove('shadow-md');
+                }
+            });
+
+            // 4. Mobile Menu Toggle
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                // Karena Lucide mengubah <i> menjadi <svg>, kita timpa HTML di dalamnya agar icon berubah
+                if (mobileMenu.classList.contains('hidden')) {
+                    mobileMenuBtn.innerHTML = '<i data-lucide="menu" class="h-6 w-6"></i>';
+                } else {
+                    mobileMenuBtn.innerHTML = '<i data-lucide="x" class="h-6 w-6"></i>';
+                }
+                lucide.createIcons(); // Render ulang icon baru
+            });
+
+            // Close mobile menu when clicking a link
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenuBtn.innerHTML = '<i data-lucide="menu" class="h-6 w-6"></i>';
+                    lucide.createIcons();
+                });
+            });
+
+            // 5. Accordion / FAQ Logic
+            const faqButtons = document.querySelectorAll('.faq-btn');
+            
+            faqButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const content = button.nextElementSibling;
+                    // Cari elemen <svg> karena tag <i> sudah di-replace oleh Lucide
+                    const icon = button.querySelector('svg');
+                    
+                    // Tutup accordion lain yang sedang terbuka
+                    document.querySelectorAll('.accordion-content').forEach(item => {
+                        if (item !== content) {
+                            item.style.maxHeight = null;
+                            const prevIcon = item.previousElementSibling.querySelector('svg');
+                            if(prevIcon) prevIcon.style.transform = 'rotate(0deg)';
+                        }
+                    });
+
+                    // Buka/tutup accordion yang sedang diklik
+                    if (content.style.maxHeight) {
+                        content.style.maxHeight = null;
+                        if(icon) icon.style.transform = 'rotate(0deg)';
+                    } else {
+                        content.style.maxHeight = content.scrollHeight + "px";
+                        if(icon) icon.style.transform = 'rotate(180deg)';
+                    }
+                });
+            });
+
+        });
+    </script>
+</body>
+</html>
